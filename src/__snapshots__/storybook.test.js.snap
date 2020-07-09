@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Button Default 1`] = `
+<div
+  className="sc-AxjAm caStJk button"
+>
+  <input
+    readOnly={true}
+    type="text"
+    value="Test Task"
+  />
+</div>
+`;
+
+exports[`Storyshots Button Variant 1`] = `
+<div
+  className="sc-AxjAm caStJk button"
+>
+  <input
+    readOnly={true}
+    type="text"
+    value="Test Task"
+  />
+</div>
+`;
+
+exports[`Storyshots ButtonList Default 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="list-items"
+  >
+    <div
+      className="sc-AxjAm caStJk button"
+    >
+      <input
+        readOnly={true}
+        type="text"
+        value="Test Task"
+      />
+    </div>
+    <div
+      className="sc-AxjAm caStJk button"
+    >
+      <input
+        readOnly={true}
+        type="text"
+        value="one two three"
+      />
+    </div>
+    <div
+      className="sc-AxjAm caStJk button"
+    >
+      <input
+        readOnly={true}
+        type="text"
+        value="is evreyone here in with me"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots ButtonList Empty 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="list-items"
+  >
+    empty
+  </div>
+</div>
+`;
+
+exports[`Storyshots ButtonList Loading 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="list-items"
+  >
+    loading
+  </div>
+</div>
+`;
+
+exports[`Storyshots ButtonList With Pinned Tasks 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="list-items"
+  >
+    <div
+      className="sc-AxjAm caStJk button"
+    >
+      <input
+        readOnly={true}
+        type="text"
+        value="Test Task"
+      />
+    </div>
+    <div
+      className="sc-AxjAm caStJk button"
+    >
+      <input
+        readOnly={true}
+        type="text"
+        value="one two three"
+      />
+    </div>
+    <div
+      className="sc-AxjAm caStJk button"
+    >
+      <input
+        readOnly={true}
+        type="text"
+        value="Task 2 (pinned)"
+      />
+    </div>
+  </div>
+</div>
+`;
