@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Embers
+Opinionated design system framework for designing and developing digital products.
+
+Copyright and license
+Code and documentation copyright 2021 Ourfires LTD. Code released under the MIT License. Docs released under Creative Commons.
+
+
 
 ## Available Scripts
 
