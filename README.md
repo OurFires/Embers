@@ -1,6 +1,9 @@
 # Embers
-Embers is a design system boilerplate
 
+Embers is an opinionated design system framework for designing and developing digital products.
+
+Copyright and license
+Code and documentation copyright 2021 Ourfires LTD. Code released under the MIT License. Docs released under Creative Commons.
 
 We use Storybook.
 
@@ -16,16 +19,11 @@ Run the frontend app proper on port 3000:
 We use a component driven development:
 https://blog.hichroma.com/component-driven-development-ce1109d56c8e
 
-
 We use the Storyshots addon [https://github.com/storybookjs/storybook/tree/master/addons/storyshots] to automatically create snapshot of each story.
 Storyshot is initiated in `storybook.test.js`
 
-
 We use that in conjuction to Jest.
 So as we do Component.stories.js for Storybook (and Storyshots), we create Component.test.js tu use Jest for unit testing.
-
-
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
