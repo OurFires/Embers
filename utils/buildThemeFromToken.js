@@ -132,7 +132,7 @@ TypographyTypeContent += ';';
 
 fs.unlink(interfacesFilePath, ()=>{
     fs.writeFile(interfacesFilePath, '' +
-        'import {TypographyCSSComponent} from "../../libs/token";' + JS_EOL +
+        'import {TypographyCSSComponent} from "../../libs/embers";' + JS_EOL +
         AutoGenerateHeader + JS_EOL +
         TypographySizeTypeContent + JS_EOL +
         TypographyTokenContent + JS_EOL +

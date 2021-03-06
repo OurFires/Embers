@@ -1,5 +1,5 @@
 import React from 'react';
-import {emb} from "../tokens/embers-last";
+import {emb} from "../tokens/embers-last/index";
 
 const Button = () => {
   return (
