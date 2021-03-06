@@ -1,16 +1,13 @@
 import React from 'react';
-import styled from 'styled-components'
+import {emb} from "../tokens/embers-last";
 
-const Button = ({ buttonData: { goo } }) => {
+const Button = () => {
   return (
-    <ButtonWrapper className="button">
-      <input type="text" value={goo} readOnly={true} />
-    </ButtonWrapper>
+    <>{JSON.stringify(emb({
+        typography: ['titleHero', 'big', 'small', 'smallStrong'],
+        color: ['primary', 'primarydark', 'red', 'teal']
+    }))}</>
   );
  }
-export default Button
 
-
-const ButtonWrapper = styled.div`
-background-color:blue;
-`;
+export default Button;
