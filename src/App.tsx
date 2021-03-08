@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import Intro from "./pages/Intro";
-import {EmbersThemeProvider} from "./libs/embers";
+import {EmbersThemeProvider} from "./theming";
 
 function App() {
   return (
-    <EmbersThemeProvider>
+    <EmbersThemeProvider theme="default">
       <Intro />
     </EmbersThemeProvider>
   );

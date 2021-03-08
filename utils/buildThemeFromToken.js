@@ -10,10 +10,15 @@ const JS_EOL = '\n';
 
 const interfacesFilePath = newTokenFolder + 'interfaces.ts';
 const indexFilePath = newTokenFolder + 'index.ts';
+const themeFilePath = newTokenFolder + 'theme.ts';
 
 const breakpoints = {};
 const typography = {};
 const typographyNames = [];
+
+const typographyAllowProperties = ['fontSize', 'fontFamily', 'fontStyle', 'fontWeight', 'letterSpacing', 'lineHeight', 'textDecoration'];
+
+const theme = {typography:{}, colors:{}, sizes:[], spacing:[]};
 
 const replaceCSSProperties = {
     backgroundColor: ['iToken.ColorType', 'CSS.Property.BackgroundColor'],
@@ -81,6 +86,8 @@ if (!fs.existsSync(newTokenFolder)){
 TypographySizeTypeContent += 'export enum TypographySizeType{\n';
 TypographyTokenContent += 'export interface TypographyToken{\n';
 for(const breakPointName in token.sizes){
+    theme.typography[breakPointName] = {};
+    theme.sizes.push([Number(token.sizes[breakPointName].value), breakPointName]);
     breakpoints[breakPointName] = Number(token.sizes[breakPointName].value);
     TypographySizeTypeContent += `    '${breakPointName}'='${breakPointName}',\n`;
     TypographyTokenContent += `    ${breakPointName}: TextStyleToken;\n`;
@@ -88,12 +95,20 @@ for(const breakPointName in token.sizes){
 TypographySizeTypeContent += '}';
 TypographyTokenContent += '}';
 
+// Build spacing
+for(const spaceName in token.spacing){
+    theme.spacing.push(Number(spaceName));
+}
+
 // Build Colors
 ColorsTokenContent += 'export interface ColorsToken{\n';
 ColorTypeContent += 'export type ColorType = string';
 for(const colorName in token.color){
     ColorsTokenContent += `    ${colorName}: string;\n`;
     ColorTypeContent += ` | '${colorName}'`;
+    if(token.color[colorName].type==='color'){
+        theme.colors[colorName] = token.color[colorName].value;
+    }
 }
 ColorsTokenContent += '}';
 ColorTypeContent += ';';
@@ -105,10 +120,11 @@ Object.keys(breakpoints).map((sizeName)=>{
         const typoSize = _typoSize.replace(replaceExp, '').toCamelCase();
         const typo = token[sizeName][_typoSize];
         if(typo.category==='font'){
+            const typoValue = {};
             typography[sizeName][typoSize] = {};
             if(!typographyNames.includes(typoSize)) typographyNames.push(typoSize);
             for(const typoPropertyName in typo){
-                if(typoPropertyName!=='category'){
+                if(typographyAllowProperties.includes(typoPropertyName)){
                     // @ts-ignore
                     const typoProperty = typo[typoPropertyName];
                     if(typoProperty.unit)
@@ -117,6 +133,8 @@ Object.keys(breakpoints).map((sizeName)=>{
                         typography[sizeName][typoSize][typoPropertyName] = typoProperty.value;
                 }
             }
+
+            theme.typography[sizeName][typoSize] = typography[sizeName][typoSize];
         }
     }
 });
@@ -156,6 +174,7 @@ import {CSSProperties} from 'react';
 import * as iToken from './interfaces';
 import * as CSS from 'csstype';
 import {prepareEmbOutput} from '../../libs/embers'
+import theme from './theme'
 
 export interface DesignTokenCSSProperties extends Omit<CSSProperties, ${Object.keys(replaceCSSProperties).map(propertyName=>`'${propertyName}'`).join(' | ')}>{
     typography?: iToken.TypographyType | iToken.TypographyType[];
@@ -163,8 +182,8 @@ ${Object.keys(replaceCSSProperties).map((propertyName)=>(
 `    ${propertyName}?: ${replaceCSSProperties[propertyName].join(' | ')} | (${replaceCSSProperties[propertyName].join(' | ')})[];`
 )).join('\n')}
 }
-export function emb(cssProperties: DesignTokenCSSProperties): CSSProperties{
-    return prepareEmbOutput(cssProperties);
+export function emb(cssProperties: DesignTokenCSSProperties, wrapMediaQueries?: boolean): CSSProperties{
+    return prepareEmbOutput(cssProperties, theme, wrapMediaQueries);
 }
         `,
         (err) => {
@@ -176,22 +195,23 @@ export function emb(cssProperties: DesignTokenCSSProperties): CSSProperties{
     );
 });
 
-/*typographySizeTypes.map((sizeName)=>{
-    typography[sizeName] = {};
-    for (const typoSize in token[sizeName]) {
-        const typo = token[sizeName][typoSize];
-        if(typo.category==='font'){
-            typography[sizeName][typoSize] = {};
-            for(const typoPropertyName in typo){
-                if(typoPropertyName!=='category'){
-                    // @ts-ignore
-                    const typoProperty = typo[typoPropertyName];
-                    if(typoProperty.unit)
-                        typography[sizeName][typoSize][typoPropertyName] = `${typoProperty.value}${convertUnitSize(typoProperty.unit)}`;
-                    else
-                        typography[sizeName][typoSize][typoPropertyName] = typoProperty.value;
-                }
+//TODO: Remove ts-ignore after Elena fixes font synch
+fs.unlink(themeFilePath, ()=>{
+    fs.writeFile(
+        themeFilePath,
+        AutoGenerateHeader + JS_EOL +
+`import {DesignToken} from './interfaces';
+// @ts-ignore
+const theme: DesignToken = ${JSON.stringify(theme)}
+
+export default theme;
+
+`,
+        (err) => {
+            if(err) {
+                return console.log(err);
             }
+            console.log("Theme file saved!");
         }
-    }
-})*/
+    );
+});
