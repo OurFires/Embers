@@ -4,7 +4,6 @@ import { Story, Meta } from '@storybook/react';
 import {Icon} from './index';
 import type { Props } from "./index.d";
 import * as Icons from "../../icons";
-import {Card} from "../Card/index";
 
 const iconObjects: any = Object.keys(Icons);
 const defaultIcon = "Bookmark";
@@ -33,7 +32,7 @@ export const AllIcons = (props: any) => (
     <>
         {iconObjects.map((iconName: string, key: number)=>(
             <div key={key} style={{marginBottom:20,fontFamily:'Open Sans'}}>
-                <Card>
+                <>
                     <div style={{display:'flex'}}>
                         <div>
                             <Icon svgIcon={iconName} size="large" />
@@ -48,7 +47,7 @@ export const AllIcons = (props: any) => (
                             {'<Icon svgIcon="'+iconName+'" />'}
                         </div>
                     </div>
-                </Card>
+                </>
             </div>
         ))}
     </>

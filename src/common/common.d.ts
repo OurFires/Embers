@@ -10,3 +10,5 @@ export interface UIComponentProps{
 export interface UIComponentStates{
 
 }
+
+export type EmberIcon = string | JSX.Element | (() => JSX.Element);

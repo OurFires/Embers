@@ -1,5 +1,6 @@
 import React from 'react';
-import Button from "../components/Button";
+import Button from "../components/Button/index";
+import {Alert, Close} from "../icons";
 
 export default function Intro(){
     return (
@@ -47,76 +48,40 @@ export default function Intro(){
                     </div>
                 </div>
                 <div style={{width: '70%', overflow:'auto', maxHeight: '100vh'}}>
-                    <div style={{padding:10}}>
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        <Button />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
-                        Here<br />
+                    <div style={{padding:40, margin: 40, border:'2px dashed violet'}}>
+                        <Close />
+                        <Button>Normal</Button>
+                        <Button variant="secondary">Secondary</Button>
+                        <Button variant="outline">Outline</Button>
+                        <Button variant="text-only">Text Only</Button>
+                        <br />
+                        <Button variant="primary" disabled>Normal</Button>
+                        <Button variant="secondary" disabled>Secondary</Button>
+                        <Button variant="outline" disabled>Outline</Button>
+                        <Button variant="text-only" disabled>Text Only</Button>
+                        <br />
+                        <Button fullWidth>Normal</Button>
+                        <Button fullWidth disabled>Normal</Button>
+                        <br />
+                        <Button icon="User">Normal</Button>
+                        <Button icon="User" variant="secondary">Secondary</Button>
+                        <Button icon="User" variant="outline">Outline</Button>
+                        <Button icon="User" variant="text-only">Text Only</Button>
+                        <br />
+                        <Button iconRight="User">Normal</Button>
+                        <Button iconRight="User" variant="secondary">Secondary</Button>
+                        <Button iconRight="User" variant="outline">Outline</Button>
+                        <Button iconRight="User" variant="text-only">Text Only</Button>
+                        <br />
+                        <Button icon="User" iconRight="User">Normal</Button>
+                        <Button icon="User" iconRight="User" variant="secondary">Secondary</Button>
+                        <Button icon="User" iconRight="User" variant="outline">Outline</Button>
+                        <Button icon="User" iconRight="User" variant="text-only">Text Only</Button>
+                        <br />
+                        <Button icon="User" iconRight="User" disabled>Normal</Button>
+                        <Button icon="User" iconRight="User" variant="secondary" disabled>Secondary</Button>
+                        <Button icon="User" iconRight="User" variant="outline" disabled>Outline</Button>
+                        <Button icon="User" iconRight="User" variant="text-only" disabled>Text Only</Button>
                     </div>
                 </div>
             </div>
