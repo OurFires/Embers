@@ -70,7 +70,7 @@ const ButtonWrapper = styled.button(emb({
     }
 }));
 
-const Index:React.FC<Props> =
+const Button:React.FC<Props> =
 ({
     variant = 'primary',
      disabled= false,
@@ -92,4 +92,4 @@ const Index:React.FC<Props> =
     );
 }
 
-export default Index;
+export default Button;
