@@ -5,6 +5,8 @@ const packageInfo = require('../package.json')
 const tokensFolder = process.cwd() + '/src/tokens/';
 const tokenFileExtension = 'json';
 
+const typographyAllowProperties = ['fontSize', 'fontFamily', 'fontStyle', 'fontWeight', 'letterSpacing', 'lineHeight', 'textDecoration'];
+
 fs.readdir(tokensFolder, (err, files) => {
     const targetFiles = files.filter(function(file) {
         return path.extname(file).toLowerCase() === '.'+tokenFileExtension;
@@ -26,9 +28,7 @@ fs.readdir(tokensFolder, (err, files) => {
         const typography = {};
         const typographyNames = [];
 
-        const typographyAllowProperties = ['fontSize', 'fontFamily', 'fontStyle', 'fontWeight', 'letterSpacing', 'lineHeight', 'textDecoration'];
-
-        const theme = {typography:{}, colors:{}, sizes:[], spacing:[]};
+        const theme = {typography:{}, colors:{}, sizes:[], spacing:[], radius:[]};
 
         const replaceCSSProperties = {
             backgroundColor: ['iToken.ColorType', 'CSS.Property.BackgroundColor'],
@@ -38,6 +38,10 @@ fs.readdir(tokensFolder, (err, files) => {
             borderRightColor: ['iToken.ColorType', 'CSS.Property.BorderColor'],
             borderTopColor: ['iToken.ColorType', 'CSS.Property.BorderColor'],
             borderBottomColor: ['iToken.ColorType', 'CSS.Property.BorderColor'],
+            paddingY: ['number', 'string'],
+            paddingX: ['number', 'string'],
+            marginY: ['number', 'string'],
+            marginX: ['number', 'string'],
         }
 
         let TypographySizeTypeContent = '';
@@ -52,6 +56,7 @@ export interface DesignToken{
     colors: ColorsToken;
     sizes: number[];
     spacing: number[];
+    radius: number[];
 }
 `
         const AutoGenerateHeader = `
@@ -106,8 +111,14 @@ export interface DesignToken{
         TypographyTokenContent += '}';
 
         // Build spacing
+        theme.spacing.push(0);
         for(const spaceName in token.spacing){
             theme.spacing.push(Number(spaceName));
+        }
+
+        // Build radius
+        for(const radiusName in token.radii){
+            theme.radius.push(Number(radiusName));
         }
 
         // Build Colors
@@ -192,7 +203,10 @@ ${Object.keys(replaceCSSProperties).map((propertyName)=>(
                     `    ${propertyName}?: ${replaceCSSProperties[propertyName].join(' | ')} | (${replaceCSSProperties[propertyName].join(' | ')})[];`
                 )).join('\n')}
 }
-export function emb(cssProperties: DesignTokenCSSProperties, wrapMediaQueries?: boolean): CSSProperties{
+
+export type EmbersCSSProperties = DesignTokenCSSProperties | TemplateStringsArray | null | EmbersCSSProperties[] | {[key: string]: EmbersCSSProperties};
+
+export function emb(cssProperties: EmbersCSSProperties, wrapMediaQueries?: boolean): TemplateStringsArray{
     return prepareEmbOutput(cssProperties, theme, wrapMediaQueries);
 }
         `,

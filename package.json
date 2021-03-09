@@ -27,7 +27,8 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "postinstall": "node ./utils/buildThemeFromToken.js"
+    "postinstall": "node ./utils/buildThemeFromToken.js && babel-node utils/buildIcons.mjs",
+    "build-icons": "babel-node utils/buildIcons.mjs"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,7 +52,14 @@
     "@storybook/addons": "^6.1.21",
     "@storybook/preset-create-react-app": "^3.1.6",
     "@storybook/react": "^6.1.21",
+    "@svgr/core": "^5.5.0",
     "@types/styled-components": "^5.1.7",
+    "babel-cli": "^6.26.0",
+    "babel-node": "^0.0.1-security",
+    "camelcase": "^6.2.0",
+    "capitalize": "^2.0.3",
+    "glob": "^7.1.6",
+    "jsdom": "^16.5.0",
     "react-test-renderer": "^17.0.1"
   }
 }

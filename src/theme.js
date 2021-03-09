@@ -1,3 +1,5 @@
+export {emb} from 'tokens/embers-last/index';
+
 export const theme = {
   //design tokens
   breakpoints: ['480', '1024', '1440'],
