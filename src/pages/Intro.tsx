@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from "../components/Button/index";
+import TextArea from "../components/TextArea/index";
 import {Alert, Close} from "../icons";
 
 export default function Intro(){
@@ -50,6 +51,7 @@ export default function Intro(){
                 <div style={{width: '70%', overflow:'auto', maxHeight: '100vh'}}>
                     <div style={{padding:40, margin: 40, border:'2px dashed violet'}}>
                         <Close />
+                        <Alert />
                         <Button>Normal</Button>
                         <Button variant="secondary">Secondary</Button>
                         <Button variant="outline">Outline</Button>
@@ -83,6 +85,7 @@ export default function Intro(){
                         <Button icon="User" iconRight="User" variant="outline" disabled>Outline</Button>
                         <Button icon="User" iconRight="User" variant="text-only" disabled>Text Only</Button>
                     </div>
+                        <TextArea icon="User" iconRight="User" variant="text-only" disabled>Text Only</TextArea>
                 </div>
             </div>
         </div>
