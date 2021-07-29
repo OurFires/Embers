@@ -27,6 +27,13 @@ So as we do Component.stories.js for Storybook (and Storyshots), we create Compo
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to create a new component
+
+- Create a new folder at `/src/components/ComponentName` with an `index.d.ts` and an `index.tsx` inside.
+-
+
+# Create React App 👇
+
 ## Available Scripts
 
 In the project directory, you can run:
