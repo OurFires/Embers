@@ -2,12 +2,12 @@ import {TypographyCSSComponent} from "../../libs/embers";
 
 /**
  * This code was generated automatically.
- * 
+ *
  * DON'T EDIT THIS FILE
- * 
+ *
  * Changes to this file may cause incorrect behavior and will be lost if
- * the code is regenerated. 
- * 
+ * the code is regenerated.
+ *
  * @generated 7/28/2021, 5:10:49 PM
  * @generator embers 0.1.0
  */
